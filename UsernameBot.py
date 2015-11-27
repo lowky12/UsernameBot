@@ -6,13 +6,16 @@ import settings
 from prawoauth2 import PrawOAuth2Server, PrawOAuth2Mini
 import UsernameManager
 
-reddit_client = praw.Reddit(user_agent=settings.user_agent)
+user_agent = 'python:UsernameMod:v1.2 (by /u/lowky12)'
+
+reddit_client = praw.Reddit(user_agent=user_agent)
 username_manager = UsernameManager.UsernameManager(reddit_client)
 already_done = set()
 
 
 def bot_init():
-    oauthserver = PrawOAuth2Server(reddit_client, settings.reddit_app_key, settings.reddit_app_secret, state=settings.user_agent, scopes=settings.scopes)
+    oauthserver = PrawOAuth2Server(reddit_client, settings.reddit_app_key, settings.reddit_app_secret, state=user_agent,
+                                   scopes=settings.scopes)
     oauthserver.start()
     tokens = oauthserver.get_access_codes()
     print(tokens)
@@ -42,7 +45,8 @@ def compose(s, string, value):
 
 def bot_main():
     oauth_helper = PrawOAuth2Mini(reddit_client, app_key=settings.reddit_app_key, app_secret=settings.reddit_app_secret,
-                                  access_token=settings.reddit_access_token, scopes=settings.scopes, refresh_token=settings.reddit_refresh_token)
+                                  access_token=settings.reddit_access_token, scopes=settings.scopes,
+                                  refresh_token=settings.reddit_refresh_token)
     print 'UsernameBot Online!'
     while True:
         try:
@@ -89,6 +93,7 @@ def check_username_posts(subreddit, submission):
         if username_manager.user_exists(username):
             print '-- tagged as taken'
             reddit_client.set_flair(subreddit, submission, flair_text='TAKEN')
+
 
 if __name__ == '__main__':
     if settings.reddit_access_token == '{{access_token}}':
