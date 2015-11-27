@@ -1,0 +1,14 @@
+#!/usr/bin/env python2
+
+user_agent = 'python:UsernameMod:v1.2 (by /u/lowky12)'
+scopes = ['identity', 'read', 'submit', 'modflair', 'modposts']
+
+subreddit = 'your subreddit'
+
+
+# reddit.com
+reddit_app_key = 'APP KEY'
+reddit_app_secret = 'APP SECRET'
+
+reddit_refresh_token = '{{refresh_token}}'
+reddit_access_token = '{{access_token}}'
