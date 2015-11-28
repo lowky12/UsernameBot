@@ -3,8 +3,9 @@
 Performs various operations on reddit usernames
 """
 
-from praw import errors
 import re
+
+from praw import errors
 
 
 class UsernameManager(object):

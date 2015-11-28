@@ -3,11 +3,14 @@
 Bot Core Functionality
 """
 
-import praw
 import time
-import settings
+
+import praw
 from prawoauth2 import PrawOAuth2Server, PrawOAuth2Mini
+
+import settings
 import UsernameManager
+
 
 USER_AGENT = 'python:UsernameMod:v1.2 (by /u/lowky12)'
 
